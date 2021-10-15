@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { enterEditMode, updateTitleText } from './actions/app.actions';
+import { enterEditMode, setTitle, updateTitleText } from './actions/app.actions';
 
 function App(props) {
   return (
@@ -9,7 +9,7 @@ function App(props) {
       {props.editing ? (
         <div>
           <input value={props.titleText} onChange={(e) => props.updateTitleText(e.target.value)} />
-          <button>Submit</button>
+          <button onClick={() => props.setTitle()}>Submit</button>
         </div>
       ) : (
         <div>
@@ -29,4 +29,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {enterEditMode, updateTitleText})(App);
+export default connect(mapStateToProps, {enterEditMode, updateTitleText, setTitle})(App);
