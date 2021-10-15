@@ -1,5 +1,6 @@
-import { createStore } from "redux"
+import { combineReducers, createStore } from "redux"
 import { ENTER_EDIT_MODE, SET_TITLE, UPDATE_TITLE_TEXT } from "../actions/app.actions";
+import { contactReducer } from "./contact.reducer";
 
 const initialState = {
     title: 'My App',
@@ -20,4 +21,9 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const reducers = combineReducers({
+    app: reducer,
+    contact: contactReducer
+})
+
+export const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
